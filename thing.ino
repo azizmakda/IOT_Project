@@ -3,18 +3,13 @@
 #include <nRF24L01.h>
 #include <RF24.h>
 #include <Servo.h>
+
 Servo servoLeft;
 Servo servoRight;
 int trigPin = 5;
 int echoPin = 6;
 const byte MyAddress[5] = {'R','x','A','D','C'};
-//trig = pin 5
-//echo = pin 6
-//right wheel = pin 3
-//left wheel = pin 2
 
-//left wheel forward = 180, right wheel forward = 0
-//left wheel backward = 0, right wheel backward = 180
 
 RF24 radio(9, 10); //pin 9 and 10 for radio
 
@@ -32,7 +27,6 @@ void setup(){
   radio.begin();
   radio.setDataRate(RF24_250KBPS);
   radio.openReadingPipe(1, MyAddress);
-  //radio.enableAckPayload(); //add later to have two-way communication
   radio.startListening();
 }
 

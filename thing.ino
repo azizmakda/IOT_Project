@@ -41,7 +41,8 @@ void loop(){
     
     Serial.print("COMMAND = ");
     Serial.println(input2);
-    if(input2 == 1){
+    
+    if (input2 == 1) {
       checkDistance();
       Serial.print("Distance: ");
       Serial.println(distance);

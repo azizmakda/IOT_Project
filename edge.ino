@@ -22,34 +22,28 @@ int tempNum = 0; //if 0 == comand 1, if 1 == command 2
 
 String start = "start";
 
-void setup()
-{
+void setup() {
 
   Serial.begin(9600);
-  radio.begin();                                                  //begin the radio module     
+  radio.begin();  //begin the radio module     
   radio.setDataRate( RF24_250KBPS );           
   radio.setRetries(3,5);                                     
   radio.openWritingPipe(ReceiverAddress); 
-  //servoLeft.attach(10);      //  change the digital pin
-  //servoRight.attach(9);      //  change the digital pin     
-  
+   
 }
 
-void loop()
-{
+void loop() {
   Serial.print("Sending instruction: ");     
   Serial.println(input);             
   bool result = radio.write( &input, sizeof(input) );     
   //byte results = radio.write( &input, sizeof (input) ); 
 
  
-  if (result) 
+  if (result) {
   {         
-       Serial.println(" Data sent and an acknowledge is received");     
-  }     
+       Serial.println(" Data sent and an acknowledge is received");       
  
- else 
-  {         
+ else {        
        Serial.println(" transmission is failed");     
   }   
 

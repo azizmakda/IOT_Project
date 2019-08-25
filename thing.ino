@@ -18,7 +18,7 @@ long distance;
 long duration;
 int input;
 
-void setup(){
+void setup() {
   servoLeft.attach(2); 
   servoRight.attach(3);
   pinMode(trigPin, OUTPUT);
@@ -31,7 +31,7 @@ void setup(){
 }
 
 void loop(){
-  if(radio.available()){
+  if (radio.available()) {
     Serial.println("--------------------------------");
     radio.read(&input, sizeof(input));
     checkDistance();
@@ -46,11 +46,12 @@ void loop(){
       Serial.print("Distance: ");
       Serial.println(distance);
       
-      if(distance >= 10){
+      if (distance >= 10) {
         Serial.println("MOVING FORWARD");
         forward();
         delay(50);
-      } else if(distance < 10){
+      } 
+      else if (distance < 10) {
           Serial.println("TURNING");
           stopCar();
           delay(500);
@@ -66,29 +67,29 @@ void loop(){
   distance = 1000;
 }
 
-void forward(){
+void forward() {
   servoLeft.write(180);  // move the left motor clockwise
   servoRight.write(0);   // move the right motor counterclockwise
 }
 
-void stopCar(){
+void stopCar() {
   servoLeft.write(90);   // stops the left motor
   servoRight.write(90);  // stops the right motor
   delay(500);
 }
 
-void turnVehicle(){
+void turnVehicle() {
     servoLeft.write(90);
     servoRight.write(0);    
   
 }
 
-void reverse(){
+void reverse() {
     servoLeft.write(0);
     servoRight.write(180);    
 }
 
-void checkDistance(){
+void checkDistance() {
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
   digitalWrite(trigPin, HIGH);
